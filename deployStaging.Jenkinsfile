@@ -79,32 +79,6 @@ stage('DT send deploy event') {
     }
 }
 
-    stage('DT send stop test event') {
-    steps {
-        container("curl") {
-            script {
-                def status = pushDynatraceDeploymentInfoEvent (
-                    /*  String dtTenantUrl, 
-        String dtApiToken 
-        def tagRule 
-        String description 
-        String source 
-        String configuration
-        def customProperties
-    */
-                    tagRule : tagMatchRules,
-                    source : "Jmeter",
-                    description : "Performance test stoped for nodejs",
-                    title : "Jmeter Stop",
-                    customProperties : [
-                        [key: 'VU', value: "1"],
-                        [key: 'loopcount', value: "10"]
-                    ]
-                )
-            }
-        }
-    }
-}
 
 def generateDynamicMetaData(){
     String returnValue = "";
