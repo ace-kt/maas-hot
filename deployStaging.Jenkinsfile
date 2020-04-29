@@ -1,4 +1,3 @@
-@Library('ace-kt@master') _ 
 
 def tagMatchRules = [
   [
