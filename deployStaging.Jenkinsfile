@@ -40,8 +40,8 @@ pipeline {
                     description : "Performance test started for $(env.APP_NAME)",
                     title : "Jmeter Start",
                     customProperties : [
-                        [key: 'Jenkins Build Number', value: "${env.BUILD_ID}"],
-                        [key: 'Git commit', value: "${env.GIT_COMMIT}"]
+                        [key: 'VU', value: "1"],
+                        [key: 'loopcount', value: "10"]
                     ]
                 )
             }
@@ -122,8 +122,8 @@ stage('DT send deploy event') {
                     description : "Performance test stoped for $(env.APP_NAME)",
                     title : "Jmeter Stop",
                     customProperties : [
-                        [key: 'Jenkins Build Number', value: "${env.BUILD_ID}"],
-                        [key: 'Git commit', value: "${env.GIT_COMMIT}"]
+                        [key: 'VU', value: "1"],
+                        [key: 'loopcount', value: "10"]
                     ]
                 )
             }
