@@ -1,4 +1,4 @@
-@Library('ace-kt/dynatrace-jenkins-library@master') _ 
+@Library('ace@master') _ 
 
 def tagMatchRules = [
   [
