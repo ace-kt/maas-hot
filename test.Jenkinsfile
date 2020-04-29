@@ -1,4 +1,4 @@
-@Library('ace-kt/maas-hot@master') _ 
+@Library('ace-kt/dynatrace-jenkins-library@master') _ 
 
 def tagMatchRules = [
   [
