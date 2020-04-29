@@ -37,7 +37,7 @@ pipeline {
     */
                     tagRule : tagMatchRules,
                     source : "Jmeter",
-                    description : "Performance test started for $(env.APP_NAME)",
+                    description : "Performance test started for nodejs",
                     title : "Jmeter Start",
                     customProperties : [
                         [key: 'VU', value: "1"],
