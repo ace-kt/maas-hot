@@ -8,6 +8,32 @@ pipeline {
         label 'kubegit'
     }
     stages {
+        stage('DT send start test event') {
+    steps {
+        container("curl") {
+            script {
+                def status = pushDynatraceDeploymentInfoEvent (
+                    /*  String dtTenantUrl, 
+        String dtApiToken 
+        def tagRule 
+        String description 
+        String source 
+        String configuration
+        def customProperties
+    */
+                    tagRule : tagMatchRules,
+                    source : "Jmeter",
+                    description : "Performance test started for nodejs",
+                    title : "Jmeter Start",
+                    customProperties : [
+                        [key: 'VU', value: "1"],
+                        [key: 'loopcount', value: "10"]
+                    ]
+                )
+            }
+        }
+    }
+}
         stage('Run performance test') {
             steps {
                 checkout scm
