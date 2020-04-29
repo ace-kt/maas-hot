@@ -25,7 +25,7 @@ pipeline {
     steps {
         container("curl") {
             script {
-                def status = pushDynatraceDeploymentInfoEvent (
+                def status = pushDynatraceInfoEvent (
                     /*  String dtTenantUrl, 
         String dtApiToken 
         def tagRule 
@@ -76,7 +76,7 @@ pipeline {
     steps {
         container("curl") {
             script {
-                def status = pushDynatraceDeploymentInfoEvent (
+                def status = pushDynatraceInfoEvent (
                     /*  String dtTenantUrl, 
         String dtApiToken 
         def tagRule 
