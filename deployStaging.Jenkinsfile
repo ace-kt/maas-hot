@@ -22,6 +22,32 @@ pipeline {
         label 'kubegit'
     }
     stages {
+    stage('DT send start test event') {
+    steps {
+        container("curl") {
+            script {
+                def status = pushDynatraceDeploymentInfoEvent (
+                    /*  String dtTenantUrl, 
+        String dtApiToken 
+        def tagRule 
+        String description 
+        String source 
+        String configuration
+        def customProperties
+    */
+                    tagRule : tagMatchRules,
+                    source : "Jmeter",
+                    description : "Performance test started for $(env.APP_NAME)",
+                    title : "Jmeter Start",
+                    customProperties : [
+                        [key: 'Jenkins Build Number', value: "${env.BUILD_ID}"],
+                        [key: 'Git commit', value: "${env.GIT_COMMIT}"]
+                    ]
+                )
+            }
+        }
+    }
+}
         stage('Update Deployment and Service specification') {
             steps {
                 script {
@@ -75,6 +101,33 @@ stage('DT send deploy event') {
                 ]
             }
         }  
+    }
+}
+
+    stage('DT send stop test event') {
+    steps {
+        container("curl") {
+            script {
+                def status = pushDynatraceDeploymentInfoEvent (
+                    /*  String dtTenantUrl, 
+        String dtApiToken 
+        def tagRule 
+        String description 
+        String source 
+        String configuration
+        def customProperties
+    */
+                    tagRule : tagMatchRules,
+                    source : "Jmeter",
+                    description : "Performance test stoped for $(env.APP_NAME)",
+                    title : "Jmeter Stop",
+                    customProperties : [
+                        [key: 'Jenkins Build Number', value: "${env.BUILD_ID}"],
+                        [key: 'Git commit', value: "${env.GIT_COMMIT}"]
+                    ]
+                )
+            }
+        }
     }
 }
 
